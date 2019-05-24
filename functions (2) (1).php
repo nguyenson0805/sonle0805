@@ -1,5 +1,6 @@
+//Bài viết liên quan và đường dẫn
+//BÀI VIếT LIÊN QUAN
 <?php
-// Add custom Theme Functions here
 function genre( $atts, $content = null ) {
 global $post;
 $categories = get_the_category_list( ', ', '', $post->ID );
@@ -19,7 +20,6 @@ $i=1;
  <?php while ($vnkings->have_posts()) : $vnkings->the_post();
 if($i<5){
 ?>
-
 <div class="bai_viet">
     <a href="<?php the_permalink() ;?>" class="anh_bai_viet"> 
         <?php the_post_thumbnail();?>
@@ -27,9 +27,9 @@ if($i<5){
     <a href="<?php the_permalink() ;?>" class="tieu_de_bai_viet"><?php the_title() ;?></a>
 
 </div>
-
 <?php } $i++; endwhile ; ?></div><?php wp_reset_query() ;}
 add_shortcode("genre", "genre");
+//ĐƯỜNG DẪN
 function custom_breadcrumb() {
 			global $post;
             echo '<div class="duong_dan">';
