@@ -2,10 +2,10 @@
 <script>
 
 $(document).ready(function() { 
-        catchuoi('.tom-tat','...')
+        catchuoi('.tom-tat','...',100)
 });
 //CẮT CHUỖI EXCEPT
-function catchuoi($ele,$rm){
+function catchuoi($element,$readmore,$limit){
 var ecnd=$($ele).text().substr(0,100);
 if(ecnd){
 $('.tom-tat').text(ecnd);
