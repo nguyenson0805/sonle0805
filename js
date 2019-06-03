@@ -5,12 +5,14 @@ $(document).ready(function() {
         exceptJs('.tom-tat','...',100)
 });
 //CẮT CHUỖI EXCEPT
-function exceptJs($element,$readmore,$limit){
-var ecnd=$($ele).text().substr(0,100);
-if(ecnd){
-$('.tom-tat').text(ecnd);
-kl=$('.tom-tat').append($rm);
-console.log(kl.text());
+function exceptJs($selector,$length,$readmoretext){
+ $($selector).each(function(index){
+      if($(this).text().length>1){
+         $(this).text($(this).text().substr(0,$length)).append($readmoretext);
 }
+    else{
+        $(this).text("Đây là nội dung")
+       }
+    });
 }
 </script>
