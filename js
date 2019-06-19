@@ -79,3 +79,15 @@ $('.new-tours .product-small').each(function(){
 
 }
 </script>
+<------------------------------------------CLICK FUNCTION---------------------------------------------------------------------------------->
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script>
+ $(function(){
+           $(".search_product").click(function(){      
+              $('input[name=post_type]').val('product');
+          });
+ $(".search_article").click(function(){      
+              $('input[name=post_type]').val('post');
+          });
+         });
+</script>
