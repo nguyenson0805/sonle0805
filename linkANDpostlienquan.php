@@ -1,30 +1,25 @@
 //Bài viết liên quan và đường dẫn
 //BÀI VIếT LIÊN QUAN
 <?php
-function genre( $atts, $content = null ) {
+<?php
+function genre() {
 global $post;
-$categories = get_the_category_list( ', ', '', $post->ID );
-$vnkings = new WP_Query(array(
-'post_type'=>'post',
-'post_status'=>'publish',
-'cat_name' => $categories,
-//thay id_của_category bằng id danh mục bạn muốn hiển thị nhé
-'orderby' => 'ID',
-'order' => 'DESC',
-'posts_per_page'=> 5));
+$id_post= get_the_ID();
+$categories = get_the_category();
+$cat= $categories[0]->term_id ;
+$cat_name= $categories[0]->name ;
+$vnkings = new WP_Query( array( 'cat' =>$cat ) );
 $i=1;
 ?>
 
-<h3> Có thể bạn quan tâm</h3>
 <div class="quan_tam">
+	<h3><?=get_locale()!="en_US"?''.$cat_name.'LIÊN QUAN':''.$cat_name.' RELATED'?>
+	</h3>
  <?php while ($vnkings->have_posts()) : $vnkings->the_post();
-if($i<5){
+if($i<5&&$id_post!=get_the_ID()){
 ?>
 <div class="bai_viet">
-    <a href="<?php the_permalink() ;?>" class="anh_bai_viet"> 
-        <?php the_post_thumbnail();?>
-    </a>
-    <a href="<?php the_permalink() ;?>" class="tieu_de_bai_viet"><?php the_title() ;?></a>
+    <a href="<?php the_permalink() ;?>" class="tieu_de_bai_viet"><?php the_title();?></a>
 
 </div>
 <?php } $i++; endwhile ; ?></div><?php wp_reset_query() ;}
