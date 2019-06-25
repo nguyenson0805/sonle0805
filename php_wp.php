@@ -116,3 +116,31 @@ function custom_excerpt_length( $length ) {
 	return 20;
 }
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+//CHUyên TIỀN Tệ VÀ ĐƠN VỊ ĐO LƯỜNG_____________________________________________________________________________________________________>
+add_filter( 'woocommerce_currencies', 'add_my_currency' );
+ 
+function add_my_currency( $currencies )
+{
+     $currencies['VND'] = __( 'Vietnam Dong', 'woocommerce' );
+     return $currencies;
+}
+ 
+add_filter('woocommerce_currency_symbol', 'add_my_currency_symbol', 10, 2);
+ 
+function add_my_currency_symbol( $currency_symbol, $currency )
+{
+     switch( $currency )
+     {
+          case 'VND': if(get_category_id()=='35'){$currency_symbol = 'đồng/lít';}else{$currency_symbol = 'đồng/kg';};
+          break;
+     }
+     return $currency_symbol;
+}
+function get_category_id(){
+	global $wp_query;
+    $terms_post = get_the_terms( $post->cat_ID , 'product_cat' );
+    foreach ($terms_post as $term_cat) { 
+    $term_cat_id = $term_cat->term_id; 
+    return $term_cat_id;
+}
+}
