@@ -1,0 +1,2 @@
+//get attribute terms pa_(attribute)
+$koostis =wc_get_product_terms( $post->ID, 'pa_loai-hinh', array( 'fields' => 'names' ) ) ;
